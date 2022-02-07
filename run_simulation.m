@@ -11,9 +11,8 @@
 % https://doi.org/10.1016/j.bspc.2022.103538                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% add folders to the path to read data (just have "PulseDecompositionAnalysis" in a subfolder
-addpath(genpath('PulseDecompositionAnalysis'));%create and add the subfolder(s)
-sourceFolder ='PulseDecompositionAnalysis\Comparison\basicModels\Parameter\';%here some parameters are stored
+% add folders to the path to read data
+sourceFolder ='Templates\';%here some parameters are stored
 algorithm='GammaGauss2Mode';%decomposition algorihtm (likely to be fixed)
 algorithmType='GammaGaussian';%algorithm name (without kernel number)
 numberOfKernels=2;%specify number of kernels (must match algorithm)
@@ -37,7 +36,6 @@ n_iter = []; % array for the actual number of iterations
 pulse_examples = cell(4,size(SNR_query,1),size(f_s_query,1)); % cell for example plot of the signals
 
 for class = 1:4 %here 1...4 can be selected to represent the dawber classes --> varied in the loop (or executed 4 times)
-
     xx=load([sourceFolder  algorithm '\' num2str(class) '.mat']);%load parameters from previosu decomposition
     temporalShift = 0.7;%shift in seconds each template should be shifted to be approx. in the mean of x; the concrete value should not matter, just leave it
     xx.opt_values(2:3:end)=xx.opt_values(2:3:end)+temporalShift;%add shift(seconds) to the mean distribution value to cause shift
